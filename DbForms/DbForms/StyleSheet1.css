@@ -1,0 +1,24 @@
+﻿body 
+{
+}
+.divHead
+{
+    background-color:#600;
+    font-weight:bold;
+    padding:10px;
+    color:White;
+}
+.divBody
+{
+    
+    padding:10px;
+}
+.divLinks
+{
+   font-weight:bold;
+   color:White;   
+}
+.divRegister
+{
+  padding:10px;   
+}

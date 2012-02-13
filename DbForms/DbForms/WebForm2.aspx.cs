@@ -12,10 +12,7 @@ namespace DbForms
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            
-        }
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             ddlSelectSport.SelectedIndexChanged += new EventHandler(ddlSelectSport_SelectedIndexChanged);
@@ -23,7 +20,7 @@ namespace DbForms
         public void ddlSelectSport_SelectedIndexChanged(object sender, EventArgs e)
         {
             string choice = "'"+ddlSelectSport.SelectedValue+"'";
-            SqlDataAdapter dad = new SqlDataAdapter("Select Navn FROM Medlemmer INNER JOIN Sports ON Medlemmer.MedNr=Sports.MedNr AND Sports.Sport="+choice,
+            SqlDataAdapter dad = new SqlDataAdapter("Select Navn,Etternavn FROM Medlemmer INNER JOIN Sports ON Medlemmer.MedNr=Sports.MedNr AND Sports.Sport="+choice,
                WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             DataTable dtblMembers = new DataTable();
             dad.Fill(dtblMembers);

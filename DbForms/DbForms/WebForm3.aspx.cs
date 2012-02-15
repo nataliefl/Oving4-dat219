@@ -42,6 +42,14 @@ namespace DbForms
 
         protected void bt1Register_Click(object sender, EventArgs e)
         {
+
+            System.Collections.ArrayList al = CheckboxListSelections(cbl1);
+            if (al.Count == 0)
+            {
+                lblStatusSQL.Text = "No sport selected, nothing added.";
+                return;
+            }
+
             string firstName = txtName.Text;
             string lastName = txtSurname.Text;
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString); 
@@ -63,7 +71,7 @@ namespace DbForms
          sqlReader.Close();        
          if (medId != 0)
          {
-             System.Collections.ArrayList al = CheckboxListSelections(cbl1);
+             
              for (int r = 0; r < al.Count; r++)
              {
                  string selectedSport = al[r].ToString();
@@ -74,10 +82,19 @@ namespace DbForms
              command.CommandText = "UPDATE Medlemmer SET Kjønn=" + (text = (ddl1.SelectedValue == "Male") ? "'Male'" : "'Female'") + "WHERE MedNr=" + "'" + medId.ToString() + "'";
              command.ExecuteNonQuery();
          }
+         lblStatusSQL.Text = "Member "+txtName.Text+" added.";
+         txtEmail.Text = "";
+         txtName.Text = "";
+         txtSurname.Text = "";
+         txtTelefon.Text = "";
+         ddl1.SelectedIndex = 0;
+         cbl1.ClearSelection();
+        
                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                lblStatusSQL.Text = ex.Message;
                 throw;
             }
             finally

@@ -47,9 +47,10 @@
     </asp:CheckBoxList>
     <br />
     <asp:Button ID="bt1Register" runat="server" Text="Register" 
-        ValidationGroup="rGroup" onclick="bt1Register_Click" TabIndex="6" />
+        ValidationGroup="rGroup" onclick="bt1Register_Click" TabIndex="6" /><br />
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
         ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
         SelectCommand="SELECT DISTINCT Sport FROM Sports"></asp:SqlDataSource>
+        <asp:Label ID="lblStatusSQL" runat="server"></asp:Label>
         </div>
 </asp:Content>
